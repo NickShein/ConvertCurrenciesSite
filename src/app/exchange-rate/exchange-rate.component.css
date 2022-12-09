@@ -1,0 +1,27 @@
+
+.main-title{
+  color: white;
+  padding-top: 100px;
+  font-size: 62px;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.exchange-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-title,.currency{
+  min-width: 520px;
+}
+
+.currency{
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 32px;
+  column-gap: 100px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: rgb(188, 192, 255);
+}

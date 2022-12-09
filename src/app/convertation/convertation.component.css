@@ -1,0 +1,124 @@
+.convertation-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-convertation-header{
+    margin-top: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: normal;
+    color: white;
+    border-bottom: solid white 1px;
+    padding: 5px 5px 15px;
+}
+
+.convertation-block{
+    background: white;
+    margin-top: 20px;
+    padding: 50px;
+    width: 900px;
+    font-size: 18px;
+    border-radius: 5px;
+    box-shadow: 0 4px 29px rgb(0 0 0 / 10%);
+    color: slategray;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.input-select-group-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.input-currency{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.input-currency input{
+    height: 50px;
+    padding: 13px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top: solid 1px grey;
+    border-left: solid 1px grey;
+    border-bottom: solid 1px grey;
+    border-right: none;
+}
+
+label{
+    display: block;
+    padding: 5px;
+}
+
+.input-currency input:focus + label{
+    color: #3070df;
+}
+
+.input-currency input:focus{
+    outline: none;
+    border: none;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-top: solid 1px #3070df;
+    border-left: solid 1px #3070df;
+    border-bottom: solid 1px #3070df;
+}
+select{
+    height: 50px;
+    padding: 10px 20px;
+    background: #021f52;
+    color: white;
+}
+
+.input-select-group{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+select:focus{
+    outline: none;
+}
+
+.selectSummary,.selectConverted{
+    position: relative;
+}
+
+.flagDivSummary, .flagDivConverted{
+    content: '';
+    display: block;
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    left: 5px;
+    bottom: 20px;
+    background: transparent;
+}
+
+.eu-flag{
+    width: 18px;
+    height: 18px;
+    background: url('../resources/Flag_of_Europe.svg.webp') center;
+    margin: 5px 0;
+}
+
+.switchCurrencyButton{
+    height: 50px;
+    align-self: flex-end;
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: url('../resources/undo-4-24.png') no-repeat center;
+}
+
+.green-text{
+    color: green;
+    font-weight: bold;
+}
+
+.converted-currency{
+    font-size: 32px;
+    margin-top: 20px;
+}

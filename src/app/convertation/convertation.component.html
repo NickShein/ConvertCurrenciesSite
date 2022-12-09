@@ -1,0 +1,43 @@
+<div class="convertation-container">
+    <h1 class="main-convertation-header">Сonvert your currency at the real exchange rate</h1>
+    <div class="convertation-block">
+       <div class="input-select-group-wrapper">
+            <div class="input-select-group">
+                <form class="input-currency">
+                    <input (paste)="(false)" type="text" name="Summary" id="Summary" autocomplete="off" [(ngModel)]="selectedCurrentCurrency" (ngModelChange)="convertMoney('fromTo')" inputmode="decimal" (keypress)="restrictNumeric($event)">
+                    <label for="Summary">Summary</label>
+                </form>
+                <div class="selectSummary">
+                    <select [(ngModel)]="selectedOption" (change)="onEditClick($any($event.target).value, 'current');getCurrency(selectedOption, selectedOptionConvert);convertMoney('fromTo')">
+                        <option *ngFor="let o of options">{{o.name}}</option>
+                    </select>
+                    <div class="flagDivSummary">
+                        <div class="flag-icon flag-icon-ua flag-icon-squared" *ngIf="uaFlagExists"></div>
+                        <div class="eu-flag" *ngIf="euFlagExists"></div>
+                        <div class="flag-icon flag-icon-us flag-icon-squared" *ngIf="usFlagExists"></div>
+                    </div>
+                </div>
+            </div>
+            <button class="switchCurrencyButton" (click)="changeCurrencies()"></button>
+            <div class="input-select-group">
+                <form class="input-currency">
+                    <input (paste)="(false)" type="text" name="Converted" id="Converted" autocomplete="off" [(ngModel)]="selectedConvertedCurrency" (ngModelChange)="convertMoney('toFrom')" inputmode="decimal" (keypress)="restrictNumeric($event)">
+                    <label for="Converted">Converted to</label>
+                </form>
+                <div class="selectConverted">
+                    <select [(ngModel)]="selectedOptionConvert" (change)="onEditClick($any($event.target).value, 'converted');getCurrency(selectedOption, selectedOptionConvert)">
+                        <option *ngFor="let o of options">{{o.name}}</option>
+                    </select>
+                    <div class="flagDivConverted">
+                        <div class="flag-icon flag-icon-ua flag-icon-squared" *ngIf="uaFlagExistsConverted"></div>
+                        <div class="eu-flag" *ngIf="euFlagExistsConverted"></div>
+                        <div class="flag-icon flag-icon-us flag-icon-squared" *ngIf="usFlagExistsConverted"></div>
+                    </div>
+                </div>
+            </div>
+       </div>
+       <div class="converted-currency">
+        1 {{selectedOption}} = <span class="green-text">{{convertedCurrency}}</span> {{selectedOptionConvert}}
+       </div>
+    </div>
+</div>
