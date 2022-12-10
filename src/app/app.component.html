@@ -1,4 +1,4 @@
 <div class="exchange-container">
-  <app-exchange-rate></app-exchange-rate>
-  <app-convertation></app-convertation>
+  <app-exchange-rate (CurrencyListExport)="getCurrencyList($event)"></app-exchange-rate>
+  <app-convertation [currency_list]="currency_list"></app-convertation>
 </div>

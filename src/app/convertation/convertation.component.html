@@ -8,14 +8,9 @@
                     <label for="Summary">Summary</label>
                 </form>
                 <div class="selectSummary">
-                    <select [(ngModel)]="selectedOption" (change)="onEditClick($any($event.target).value, 'current');getCurrency(selectedOption, selectedOptionConvert);convertMoney('fromTo')">
-                        <option *ngFor="let o of options">{{o.name}}</option>
+                    <select [(ngModel)]="selectedOption" (change)="getCurrency(selectedOption, selectedOptionConvert);convertMoney('fromTo')">
+                        <option *ngFor="let o of options;let i=index">{{o.name}}</option>
                     </select>
-                    <div class="flagDivSummary">
-                        <div class="flag-icon flag-icon-ua flag-icon-squared" *ngIf="uaFlagExists"></div>
-                        <div class="eu-flag" *ngIf="euFlagExists"></div>
-                        <div class="flag-icon flag-icon-us flag-icon-squared" *ngIf="usFlagExists"></div>
-                    </div>
                 </div>
             </div>
             <button class="switchCurrencyButton" (click)="changeCurrencies()"></button>
@@ -25,14 +20,9 @@
                     <label for="Converted">Converted to</label>
                 </form>
                 <div class="selectConverted">
-                    <select [(ngModel)]="selectedOptionConvert" (change)="onEditClick($any($event.target).value, 'converted');getCurrency(selectedOption, selectedOptionConvert)">
-                        <option *ngFor="let o of options">{{o.name}}</option>
+                    <select [(ngModel)]="selectedOptionConvert" (change)="getCurrency(selectedOption, selectedOptionConvert) ">
+                        <option *ngFor="let o of options" [selected]="o.name=='EUR'">{{o.name}}</option>
                     </select>
-                    <div class="flagDivConverted">
-                        <div class="flag-icon flag-icon-ua flag-icon-squared" *ngIf="uaFlagExistsConverted"></div>
-                        <div class="eu-flag" *ngIf="euFlagExistsConverted"></div>
-                        <div class="flag-icon flag-icon-us flag-icon-squared" *ngIf="usFlagExistsConverted"></div>
-                    </div>
                 </div>
             </div>
        </div>

@@ -107,6 +107,7 @@ select:focus{
 .switchCurrencyButton{
     height: 50px;
     align-self: flex-end;
+    padding: 25px;
     width: 30px;
     height: 30px;
     border: none;

@@ -1,5 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ConvertionRates } from '../iCurrencyList';
+
+interface ArrayOfObjects{
+  name:string,
+  value:number
+}
 
 @Component({
   selector: 'app-convertation',
@@ -7,6 +13,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
   styleUrls: ['./convertation.component.css']
 })
 export class ConvertationComponent implements OnInit {
+  @Input() currency_list: ConvertionRates = {};
   //select bindings
   selectedOption: string = 'UAH';
   selectedOptionConvert: string = "EUR";
@@ -17,84 +24,44 @@ export class ConvertationComponent implements OnInit {
   convertedCurrency: number = 0;
   currentCurrency:number = 0;
 
-  options = [
-    { name: "UAH", value: 1 },
-    { name: "EUR", value: 2 },
-    { name: "USD", value: 3 },
-  ]
+  options:ArrayOfObjects[] = [];
 
   //exchange currency values
   uah_eur_currency: number = 0;
   uah_usd_currency:number = 0;
   uah_uah_currency:number = 1;
 
-  //current values
-  uaFlagExists: boolean = true;
-  euFlagExists: boolean = false;
-  usFlagExists: boolean = false;
-  //converted values
-  uaFlagExistsConverted: boolean = false;
-  usFlagExistsConverted: boolean = false;
-  euFlagExistsConverted: boolean = true;
 
 
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void {
     this.getCurrency('UAH','EUR');
+    setTimeout(() => {
+      this.generateSelectOptions();
+    }, 200);
   }
 
-  //function for showing flags near currency
-  onEditClick(country:any,mode:string){
-    if(mode=='current'){
-      if(country=='UAH'){
-        this.uaFlagExists = true;
-        this.euFlagExists = false;
-        this.usFlagExists = false;
-      }
-      else if(country=='EUR'){
-        this.euFlagExists = true;
-        this.uaFlagExists = false;
-        this.usFlagExists = false;
-      }
-      else{
-        this.usFlagExists = true;
-        this.euFlagExists = false;
-        this.uaFlagExists = false;
-      }
+  generateSelectOptions(){
+    let index = 1;
+    console.log(this.currency_list);
+    for(const key in this.currency_list){
+      console.log(key, this.currency_list[key])
+      this.options.push({name:key,value:index});
+      index=index+1;
     }
-    else{
-      if(country=='UAH'){
-        this.uaFlagExistsConverted = true;
-        this.euFlagExistsConverted = false;
-        this.usFlagExistsConverted = false;
-      }
-      else if(country=='EUR'){
-        this.euFlagExistsConverted = true;
-        this.uaFlagExistsConverted = false;
-        this.usFlagExistsConverted = false;
-      }
-      else{
-        this.usFlagExistsConverted = true;
-        this.euFlagExistsConverted = false;
-        this.uaFlagExistsConverted = false;
-      }
-    }
+    this.selectedOptionConvert = "EUR";
   }
 
-  public restrictNumeric(e:any) {
+  restrictNumeric(e:KeyboardEvent) {
     let input;
-    if (e.metaKey || e.ctrlKey) {
+    if (e.metaKey || e.ctrlKey || e.key == '.') {
       return true;
     }
-    if (e.which === 32) {
-     return false;
-    }
-    if (e.which === 0) {
-     return true;
-    }
-    if (e.which < 33) {
-      return true;
+    for(let i = 0;i<10;i=i+1){
+      if(e.key == '' + i){
+        return true;
+      }
     }
     input = String.fromCharCode(e.which);
     return !!/[\d\s]/.test(input);
@@ -118,8 +85,6 @@ export class ConvertationComponent implements OnInit {
     let tempCurrency = this.selectedOption;
     this.selectedOption = this.selectedOptionConvert;
     this.selectedOptionConvert = tempCurrency;
-    this.onEditClick(this.selectedOption,'current');
-    this.onEditClick(this.selectedOptionConvert,'converted');
     this.getCurrency(this.selectedOption,this.selectedOptionConvert);
     setTimeout(() => {
       this.convertMoney('fromTo');
