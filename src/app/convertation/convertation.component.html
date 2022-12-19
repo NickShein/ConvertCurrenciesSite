@@ -4,7 +4,7 @@
        <div class="input-select-group-wrapper">
             <div class="input-select-group">
                 <form class="input-currency">
-                    <input (paste)="(false)" type="text" name="Summary" id="Summary" autocomplete="off" [(ngModel)]="selectedCurrentCurrency" (ngModelChange)="convertMoney('fromTo')" inputmode="decimal" (keypress)="restrictNumeric($event)">
+                    <input (paste)="(false)" type="number" name="Summary" id="Summary" autocomplete="off" [(ngModel)]="selectedCurrentCurrency" (ngModelChange)="convertMoney('fromTo')">
                     <label for="Summary">Summary</label>
                 </form>
                 <div class="selectSummary">
@@ -16,7 +16,7 @@
             <button class="switchCurrencyButton" (click)="changeCurrencies()"></button>
             <div class="input-select-group">
                 <form class="input-currency">
-                    <input (paste)="(false)" type="text" name="Converted" id="Converted" autocomplete="off" [(ngModel)]="selectedConvertedCurrency" (ngModelChange)="convertMoney('toFrom')" inputmode="decimal" (keypress)="restrictNumeric($event)">
+                    <input (paste)="(false)" type="number" name="Converted" id="Converted" autocomplete="off" [(ngModel)]="selectedConvertedCurrency" (ngModelChange)="convertMoney('toFrom')">
                     <label for="Converted">Converted to</label>
                 </form>
                 <div class="selectConverted">

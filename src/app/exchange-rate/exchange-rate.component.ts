@@ -20,10 +20,6 @@ export class ExchangeRateComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCurrencyList();
-    setTimeout(() => { //can be set setInterval for current project if the api wasn`t limited in usage
-      this.setForeignCurrencyToUAH();
-      this.exportToConvertationComponent();
-    }, 200);
   }
 
   exportToConvertationComponent(){
@@ -37,6 +33,8 @@ export class ExchangeRateComponent implements OnInit {
       for(let key in result.conversion_rates){
         this.currency_list[key] = result.conversion_rates[key];
       }
+      this.setForeignCurrencyToUAH();
+      this.exportToConvertationComponent();
     });
   }
 
